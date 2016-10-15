@@ -1,0 +1,16 @@
+version: '2'
+services:
+
+  devotee-service:
+    image: parmar/devotee-service
+    ports:
+      - "127.0.0.1:8080:8080"
+    links:
+      - "mongo:mongo"
+  mongo:
+    image: mongo
+    ports:
+      - "127.0.0.1:27017:27017"
+    volumes:
+      - /data/db:/data/db
+
