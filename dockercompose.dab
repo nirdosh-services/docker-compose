@@ -1,0 +1,29 @@
+{
+  "Services": {
+    "api-gateway": {
+      "Image": "parmar/api-gateway@sha256:cef42fd9d4979f9e64f8d00b4e52e04f738a79276e0f2af923cdcc7fbadf4b8d", 
+      "Networks": [
+        "back"
+      ], 
+      "Ports": [
+        {
+          "Port": 8000, 
+          "Protocol": "tcp"
+        }
+      ]
+    }, 
+    "devotee-service": {
+      "Image": "parmar/devotee-service@sha256:802fd9079d15c111598f2352f3ecc25abba3c5a17b9cf65bcf100ecf2937da82", 
+      "Networks": [
+        "back"
+      ]
+    }, 
+    "mongo": {
+      "Image": "mongo@sha256:8ff7bd4acdb123e3922a7fae7f73efa35fba35af33fad0de946ea31370a23cc4", 
+      "Networks": [
+        "back"
+      ]
+    }
+  }, 
+  "Version": "0.1"
+}

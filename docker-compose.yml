@@ -2,7 +2,7 @@ version: '2'
 services:
   api-gateway:
     container_name: api-gateway
-    image: parmar/api-gateway
+    image: parmar/api-gateway:1.2
     ports:
       - "8000:8000"
     depends_on:
@@ -11,14 +11,18 @@ services:
       - back  
   devotee-service:
     container_name: devotee-service
-    image: parmar/devotee-service
-    ports:
-      - "127.0.0.1:8080:8080"
-      - "api-gateway:8080:8080"
+    image: parmar/devotee-service:1.2
     depends_on:
       - mongo
     networks:
-      - back  
+      - back 
+  authentication-service:
+    container_name: authentication-service
+    image: parmar/authentication-service:1.2
+    depends_on: 
+      - mongo
+    networks:
+      - back       
   mongo:
     container_name: mongo
     image: mongo
@@ -28,5 +32,5 @@ services:
       - back
 networks:
   back:
-    driver: overlay
+    driver: bridge
 
