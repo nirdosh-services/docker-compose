@@ -2,23 +2,23 @@ version: '2'
 services:
   api-gateway:
     container_name: api-gateway
-    image: parmar/api-gateway:1.2
+    image: parmar/api-gateway:latest
     ports:
       - "8000:8000"
     depends_on:
-      - devotee-service
+      - user-service
     networks:
       - back  
   devotee-service:
-    container_name: devotee-service
-    image: parmar/devotee-service:1.2
+    container_name: user-service
+    image: parmar/user-service:1.6
     depends_on:
       - mongo
     networks:
       - back 
   authentication-service:
     container_name: authentication-service
-    image: parmar/authentication-service:1.2
+    image: parmar/authentication-service:1.6
     depends_on: 
       - mongo
     networks:
