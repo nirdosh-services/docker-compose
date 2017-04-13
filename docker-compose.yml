@@ -1,17 +1,17 @@
 version: '2'
 services:
-  devotee-app:
-    container_name: user-app
-    image: parmar/user-app
-    ports:
-      - "80:80"
-    depends_on:
-      - api-gateway
-    networks:
-      - back
+#  devotee-app:
+#    container_name: user-app
+#    build: ../devotee-app-angular
+#    ports:
+#      - "80:80"
+#    depends_on:
+#      - api-gateway
+#    networks:
+#      - back
   api-gateway:
     container_name: api-gateway
-    image: parmar/api-gateway:latest
+    build: ../api-gateway
     ports:
       - "8000:8000"
     depends_on:
@@ -20,14 +20,14 @@ services:
       - back  
   user-service:
     container_name: user-service
-    image: parmar/user-service:1.6
+    build: ../user-service
     depends_on:
       - mongo
     networks:
       - back 
   authentication-service:
     container_name: authentication-service
-    image: parmar/authentication-service:1.6
+    build: ../authentication-service
     depends_on: 
       - mongo
     networks:
@@ -35,6 +35,8 @@ services:
   mongo:
     container_name: mongo
     image: mongo
+    ports:
+      - "27017:27017"
     #volumes:
     # - /data/db:/data/db
     networks:
